@@ -109,7 +109,18 @@ export default function Home({ products }) {
   );
 }
 
-// export async function getStaticProps() {
+ export async function getStaticProps() {
+   const res = await fetch(`http://localhost:3000/api/products`);
+
+  const data = await res.json();
+
+   return {
+    props: {
+      products: data,
+    },
+  };
+}
+// export async function getServerSideProps() {
 //   const res = await fetch(`http://localhost:3000/api/products`);
 
 //   const data = await res.json();
@@ -120,17 +131,6 @@ export default function Home({ products }) {
 //     },
 //   };
 // }
-export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/products`);
-
-  const data = await res.json();
-
-  return {
-    props: {
-      products: data,
-    },
-  };
-}
 
 // export async function getStaticProps(context) {
 //   const res = await fetch("http://localhost:3000/api/products");
