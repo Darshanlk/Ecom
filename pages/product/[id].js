@@ -283,35 +283,35 @@ export default function Product({ product }) {
 
 // // so we used
 // // we destructure context which is given by  context and further we destructure id
-export async function getServerSideProps({params:{id}}) {
-   const res = await fetch(`http://localhost:3000/api/product/${id}`)
-   const data = await res.json()
-    return {
-      props: {product:data}, // will be passed to the page component as props
-    }
-  }
+// export async function getServerSideProps({params:{id}}) {
+//    const res = await fetch(`http://localhost:3000/api/product/${id}`)
+//    const data = await res.json()
+//     return {
+//       props: {product:data}, // will be passed to the page component as props
+//     }
+//   }
 
 // for getStaticProps we provide getStaticPath
-// export async function getStaticProps({ params: { id } }) {
-//   const res = await fetch(`${baseUrl}/api/product/${id}`);
-//   const data = await res.json();
-//   return {
-//     props: { product: data },
-//   };
-// }
+export async function getStaticProps({ params: { id } }) {
+  const res = await fetch(`${baseUrl}/api/product/${id}`);
+  const data = await res.json();
+  return {
+    props: { product: data },
+  };
+}
 
-// export async function getStaticPaths() {
-//   //so main logic is we fetch all id from  server and pass  in params. this is not a good approch it is depand upon website-Type
-//   return {
-//     paths: [
-//       { params: { id: "6234495fae4fde4b29024628" } }, // aapde NExt js ne kevu pade ke kaya page mate preBuid  rakhi muke
-//     ],
-//     // fallback: false, // false or 'blocking'
-//     fallback: true, // means aapde je id or je product ne jova mate click karsu te fetch thase so it may take littlebit time.
+export async function getStaticPaths() {
+  //so main logic is we fetch all id from  server and pass  in params. this is not a good approch it is depand upon website-Type
+  return {
+    paths: [
+      { params: { id: "6234495fae4fde4b29024628" } }, // aapde NExt js ne kevu pade ke kaya page mate preBuid  rakhi muke
+    ],
+    // fallback: false, // false or 'blocking'
+    fallback: true, // means aapde je id or je product ne jova mate click karsu te fetch thase so it may take littlebit time.
 
-//     //fallback is false means  aapde je id aapi tej product nu page pre loaded hoy
-//   };
-// }
+    //fallback is false means  aapde je id aapi tej product nu page pre loaded hoy
+  };
+}
 
 //lunch model
 // export async function getServerSideProps({ params: { id } }) {
