@@ -292,13 +292,13 @@ export async function getServerSideProps({params:{id}}) {
   }
 
 // for getStaticProps we provide getStaticPath
-// export async function getStaticProps({ params: { id } }) {
-//   const res = await fetch(`${baseUrl}/api/product/${id}`);
-//   const data = await res.json();
-//   return {
-//     props: { product: data },
-//   };
-// }
+export async function getStaticProps({ params: { id } }) {
+  const res = await fetch(`${baseUrl}/api/product/${id}`);
+  const data = await res.json();
+  return {
+    props: { product: data },
+  };
+}
 
 // export async function getStaticPaths() {
 //   //so main logic is we fetch all id from  server and pass  in params. this is not a good approch it is depand upon website-Type
